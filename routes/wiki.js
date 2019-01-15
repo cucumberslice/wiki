@@ -25,19 +25,29 @@ router.post('/', async (req,res,next) => {
     // console.log(req.body.content)
     // const page = await Page.create(req.body)
     
-    const page = new Page(req.body)
-    // console.log('what is ', page)
-    //    const page = new Page({
-        //        title: req.body.title,
-        //        content: req.body.content
-        //    })
+    // const page = new Page(req.body)
+
+        //  try {
+        //     await page.save();
+        //     res.redirect('/')
+        // } catch (error) {
+        //     next(error)
+        // }
+       try { const [user, wasCreated] = await User.findOrCreate({
+            where: {
+                name: req.body.name,
+                email: req.body.email
+            }
+        })
+
+        const page = await Page.create(req.body);
         
-        try {
-            await page.save();
-            res.redirect('/')
-        } catch (error) {
-            next(error)
-        }
+        Page.setAuthor(user)
+
+        res.redirect(`/wiki/${page.slug}`)
+    } catch (error) {
+        next(error)
+    }
     })
     
     // /wiki/add
