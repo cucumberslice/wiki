@@ -34,7 +34,7 @@ const init = async () => {
     // await User.sync()
     // await db.sync()
     await model.db.sync()
-    // await db.sync({force: true})
+    // await model.db.sync({force: true})
 
    
 

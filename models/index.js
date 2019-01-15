@@ -15,7 +15,6 @@ db.authenticate().then(() => {
 // }
 
 
-
 const Page = db.define('page', {
     title: {
         type: Sequelize.STRING,
@@ -23,20 +22,19 @@ const Page = db.define('page', {
     },
     slug: {
         type: Sequelize.STRING,
-        allowNull: false,
-        //since we are searching, editing, deleting by slug, these need to be unique
-       
+        allowNull: false
     },
     content: {
         type: Sequelize.TEXT,
         allowNull: false
     },
     status: {
-        type: Sequelize.ENUM("open", "closed")
+        type: Sequelize.ENUM('open', 'closed')
     }
-})
+});
+
 Page.beforeValidate(page => {
-  console.log("what is", page);
+//   console.log("what is", page);
     if (!page.slug) {
         page.slug = page.title.replace(/\s/g, "_").replace(/\W/g, "").toLowerCase();
     }
