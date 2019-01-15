@@ -41,8 +41,8 @@ router.post('/', async (req,res,next) => {
         })
 
         const page = await Page.create(req.body);
-        
-        Page.setAuthor(user)
+        console.log('what is', page)
+        await page.setAuthor(user)
 
         res.redirect(`/wiki/${page.slug}`)
     } catch (error) {
