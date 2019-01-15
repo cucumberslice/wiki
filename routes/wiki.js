@@ -33,8 +33,9 @@ router.post('/', async (req,res,next) => {
     router.get('/add', (req,res,next) =>{
         res.send(addPage())
     })
-                    router.get('/:slug', (req,res, next) => {
-                        res.send(`hit dynamic route at ${req.params.slug}`)
-                    })
+    
+    router.get('/:slug', (req,res, next) => {
+            res.send(`hit dynamic route at ${req.params.slug}`)
+        })
 
 module.exports = router;
