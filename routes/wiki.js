@@ -1,11 +1,22 @@
 const express = require("express")
 const router = express.Router();
-const {addPage, wikiPage} = require('../views')
+const {addPage, wikiPage, main} = require('../views')
 const { Page, User }= require('../models')
 
 
-router.get('/', (req,res,next) => {
-    res.send(`go to/wiki`)
+router.get('/', async (req,res,next) => {
+    // res.send(`go to/wiki`)
+    try {
+
+
+
+
+        const pages = await Page.findAll()
+        res.send(main(pages))
+    } catch (error) {
+        next(error)
+    }
+   
 })
 
 
@@ -50,6 +61,8 @@ router.post('/', async (req,res,next) => {
         }
             // res.send(`hit dynamic route at ${req.params.slug}`)
         })
+    
+  
 
     
 

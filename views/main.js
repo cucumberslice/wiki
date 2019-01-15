@@ -5,12 +5,13 @@ module.exports = (pages) => layout(html`
   <h3>Pages</h3>
   <hr>
   <form method="GET" action="/wiki/search">
-    <input type="text" name="search" />
+    <input type="text" name="search"/>
     <button type="submit">Search</button>
   </form>
   <hr>
   <ul class="list-unstyled">
     <ul>
       <!-- PLACEHOLDER LIST OF PAGES -->
+      ${pages.map(page => html `<li><a href="/wiki/${page.slug}">${page.title}</li>`)}
     </ul>
   </ul>`);
