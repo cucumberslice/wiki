@@ -61,11 +61,20 @@ router.post('/', async (req,res,next) => {
 
             const page = await Page.findOne({
                 where: {
-                    slug: req.params.slug
+                    slug: req.params.slug,
+                   
                 }
             });
+
+           if(page === null) {
+               res.sendStatus(404)
+           } else {
+
+               const author =  await page.getAuthor();
+               res.send(wikiPage(page,author))
+           }
+            
            
-            res.send(wikiPage(page))
         } catch (error) {
             next(error)
         }
