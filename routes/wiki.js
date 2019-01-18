@@ -41,7 +41,7 @@ router.post('/', async (req,res,next) => {
         })
 
         const page = await Page.create(req.body);
-        console.log('what is', page)
+        // console.log('what is', page)
         await page.setAuthor(user)
 
         res.redirect(`/wiki/${page.slug}`)
@@ -66,11 +66,12 @@ router.post('/', async (req,res,next) => {
                 }
             });
 
+            const author =  await page.getAuthor();
            if(page === null) {
                res.sendStatus(404)
            } else {
 
-               const author =  await page.getAuthor();
+            //    console.log('what is', author)
                res.send(wikiPage(page,author))
            }
             
