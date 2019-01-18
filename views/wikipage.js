@@ -1,7 +1,10 @@
 const html = require("html-template-tag");
 const layout = require("./layout");
+const marked = require('marked');
+
 
 module.exports = (page, author) => layout(html`
+${marked('I am using __markdown___')}
   <h3>${page.title}
       <small> (<a href="/wiki/${page.slug}/similar">Similar</a>)</small>
   </h3>

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "html-template-tag": "^2.0.0",
+    "marked": "^0.6.0",
     "morgan": "^1.9.1",
     "pg": "^7.7.1",
     "pg-hstore": "^2.3.2",
